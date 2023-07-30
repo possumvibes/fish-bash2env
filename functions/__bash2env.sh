@@ -49,6 +49,10 @@ env -0 | while IFS= read -rs -d $'\0' line; do
         continue
     fi
 
+    if [[ "${name}" =~ "BASH_FUNC_" ]]; then
+              continue
+    fi
+
     value="$(fish_escape "${line#*=}")"
     echo "set -gx ${name} ${value}"
 done
